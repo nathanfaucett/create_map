@@ -52,6 +52,10 @@ function createMap() {
         },
         size: function() {
             return keys.length;
+        },
+        clear: function() {
+            keys.length = 0;
+            values.length = 0;
         }
     };
 }
