@@ -83,11 +83,12 @@ function isEqual(a, b) {
 }
 
 function copyArray(array) {
-    var result = [],
-        i = array.length;
+    var i = array.length,
+        result = new Array(i);
 
     while (i--) {
         result[i] = array[i];
     }
     return result;
 }
+global.copyArray = copyArray;
