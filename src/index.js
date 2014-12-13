@@ -37,10 +37,10 @@ function createMap() {
             return false;
         },
         keys: function() {
-            return copyArray(keys);
+            return keys.slice();
         },
         values: function() {
-            return copyArray(values);
+            return values.slice();
         },
         key: function(index) {
 
@@ -80,14 +80,4 @@ function getIndex(key, keys) {
 
 function isEqual(a, b) {
     return !(a !== b && (a === a || b === b));
-}
-
-function copyArray(array) {
-    var i = array.length,
-        result = new Array(i);
-
-    while (i--) {
-        result[i] = array[i];
-    }
-    return result;
 }
