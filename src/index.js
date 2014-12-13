@@ -79,5 +79,5 @@ function getIndex(key, keys) {
 }
 
 function isEqual(a, b) {
-    return !(a !== b && (a === a || b === b));
+    return !(a !== b && !(a !== a && b !== b));
 }
