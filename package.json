@@ -18,6 +18,8 @@
     "grunt": "",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-jsbeautifier": ""
+  },
+  "dependencies": {
+    "is_equal": "git://github.com/nathanfaucett/is_equal"
   }
 }
-

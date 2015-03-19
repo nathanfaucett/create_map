@@ -1,3 +1,6 @@
+var isEqual = require("is_equal");
+
+
 module.exports = createMap;
 
 
@@ -76,8 +79,4 @@ function getIndex(key, keys) {
     }
 
     return -1;
-}
-
-function isEqual(a, b) {
-    return !(a !== b && !(a !== a && b !== b));
 }
