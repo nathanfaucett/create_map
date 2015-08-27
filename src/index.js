@@ -19,7 +19,6 @@ function createMap() {
                 values[index] = value;
             } else {
                 index = keys.length;
-
                 keys[index] = key;
                 values[index] = value;
             }
@@ -33,11 +32,10 @@ function createMap() {
             if (index !== -1) {
                 keys.splice(index, 1);
                 values.splice(index, 1);
-
                 return true;
+            } else {
+                return false;
             }
-
-            return false;
         },
         keys: function() {
             return keys.slice();
@@ -46,11 +44,9 @@ function createMap() {
             return values.slice();
         },
         key: function(index) {
-
             return keys[index];
         },
         value: function(index) {
-
             return getValue(keys[index], keys, values);
         },
         size: function() {
@@ -66,7 +62,11 @@ function createMap() {
 function getValue(key, keys, values) {
     var index = getIndex(key, keys);
 
-    return index !== -1 ? values[index] : undefined;
+    if (index !== -1) {
+        return values[index];
+    } else {
+        return undefined;
+    }
 }
 
 function getIndex(key, keys) {
