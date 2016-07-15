@@ -1,11 +1,11 @@
 createMap
 =======
 
-map for the browser and node.js
+linear map for the browser and node.js
 
 
 ```javascript
-var createMap = require("create_map");
+var createMap = require("@nathanfaucett/create_map");
 
 
 var map = createMap();

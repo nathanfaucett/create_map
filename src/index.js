@@ -1,4 +1,4 @@
-var isEqual = require("is_equal");
+var isEqual = require("@nathanfaucett/is_equal");
 
 
 module.exports = createMap;
