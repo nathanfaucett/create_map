@@ -1,82 +1,80 @@
-var isEqual = require("@nathanfaucett/is_equal");
+var has = require("@nathanfaucett/has"),
+    values = require("@nathanfaucett/values"),
+    hashCode = require("@nathanfaucett/hash_code");
 
 
 module.exports = createMap;
 
 
 function createMap() {
-    var keys = [],
-        values = [];
+    var hash = {},
+        count = 0;
 
     return {
         get: function(key) {
-            return getValue(key, keys, values);
+            var hashKey = hashCode(key);
+
+            if (has(hash, hashKey)) {
+                return hash[hashKey][1];
+            } else {
+                return void(0);
+            }
         },
         set: function(key, value) {
-            var index = getIndex(key, keys);
+            var hashKey = hashCode(key);
 
-            if (index !== -1) {
-                values[index] = value;
+            if (has(hash, hashKey)) {
+                hash[hashKey][1] = value;
             } else {
-                index = keys.length;
-                keys[index] = key;
-                values[index] = value;
+                count++;
+                hash[hashKey] = [key, value];
             }
         },
         has: function(key) {
-            return getIndex(key, keys) !== -1;
+            return has(hash, hashCode(key));
         },
         remove: function(key) {
-            var index = getIndex(key, keys);
+            var hashKey = hashCode(key);
 
-            if (index !== -1) {
-                keys.splice(index, 1);
-                values.splice(index, 1);
-                return true;
-            } else {
-                return false;
+            if (has(hash, hashKey)) {
+                count--;
             }
+
+            return delete hash[hashKey];
         },
         keys: function() {
-            return keys.slice();
+            var vs = values(hash),
+                i = -1,
+                il = count - 1,
+                array = new Array(count);
+
+            while (i++ < il) {
+                array[i] = vs[i][0];
+            }
+
+            return array;
         },
         values: function() {
-            return values.slice();
+            var vs = values(hash),
+                i = -1,
+                il = count - 1,
+                array = new Array(count);
+
+            while (i++ < il) {
+                array[i] = vs[i][1];
+            }
+
+            return array;
         },
-        key: function(index) {
-            return keys[index];
-        },
-        value: function(index) {
-            return getValue(keys[index], keys, values);
+        toArray: function() {
+            return values(hash);
         },
         size: function() {
-            return keys.length;
+            return count;
         },
         clear: function() {
-            keys.length = 0;
-            values.length = 0;
+            hash = {};
+            count = 0;
         }
     };
-}
-
-function getValue(key, keys, values) {
-    var index = getIndex(key, keys);
-
-    if (index !== -1) {
-        return values[index];
-    } else {
-        return undefined;
-    }
-}
-
-function getIndex(key, keys) {
-    var i = keys.length;
-
-    while (i--) {
-        if (isEqual(key, keys[i])) {
-            return i;
-        }
-    }
-
-    return -1;
 }

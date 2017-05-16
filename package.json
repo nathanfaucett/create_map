@@ -1,6 +1,6 @@
 {
   "name": "@nathanfaucett/create_map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "linear map for the browser and node.js",
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "zuul": "^3.3.0"
   },
   "dependencies": {
-    "@nathanfaucett/is_equal": "^0.0.1"
+    "@nathanfaucett/has": "0.0.2",
+    "@nathanfaucett/hash_code": "^0.0.2",
+    "@nathanfaucett/values": "0.0.2"
   }
 }
